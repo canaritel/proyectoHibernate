@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>    <!-- creamos una session por cada base de datos que tengamos conectada -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>  <!-- clase del driver jdbc -->
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bd_hibernate?createDatabaseIfNotExist=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true</property>  <!-- Ruta hacia nuesta BD -->
+        <!-- Had the same error. To resolve it I had to 'escape' the ampersand &[amp] sign with &amp in my database url.-->
+        <property name="hibernate.connection.username">root</property>          <!-- El username a nuesta BD -->
+        <property name="hibernate.connection.password">1q2w3e4r5t</property>    <!-- El password a nuestra BD -->
+        <property name="hibernate.hbm2ddl.auto">create</property>               <!-- Creamos todas las tablas cada vez se ejecute ( validate | update| create|create-drop) -->
+        <property name="hibernate.connection.pool_size">1</property>            <!--  número máximo de conexiones manejadas por pool  -->
+        <property name="hibernate.current_session_context_class">thread</property>    <!-- Establece la estrategia personalizada para el alcance de la "actual" Session, por ejemplo jta | thread| managed|custom.Class -->
+        <property name="hibernate.show_sql">true</property>                     <!-- Muestra por pantalla las consultas que se realicen  -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>    <!-- Tipo de lenguaje a usar, en este caso versión 5 -->
+        <property name="hibernate.dialect.storage_engine">innodb</property>     <!-- Motor a usar para guardar los datos  -->
+        <!-- mapping de las clases -->
+        <mapping class = "entities.Modulo" />                                   <!-- mapea la entidad de la clase Modulo.java  -->
+        <mapping class = "entities.Centro" />                                   <!-- mapea la entidad de la clase Centro.java  -->
+        <mapping class = "entities.Alumno" />                                   <!-- mapea la entidad de la clase Centro.java  -->
+    </session-factory>
+</hibernate-configuration>
+
+
